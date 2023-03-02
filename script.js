@@ -1,25 +1,18 @@
-// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
+const generateBtn = document.querySelector("#generate");
+const passwordTextarea = document.querySelector("#password");
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
-function writePassword() {
-  var upperLetters = ["A", "E", "I", "O", "U"];
-  var lowerLetters = ["a", "e", "i", "o", "u"];
-  var specialCharacters = ["*", "#", "!"];
-  var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-
-  var lenght = 8;
-  var pass = "";
-
-  for (var i = 0; i <= lenght; i++){
-    var randomnumb = Math.floor(Math.random() * specialCharacters.numbers.lowerLetters.upperLetters.lenght);
+function generatePassword(length) {
+  const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-+={[}]|\\:;\"'<,>.?/";
+  let password = "";
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * charset.length);
+    password += charset[randomIndex];
   }
-
-  document.getElementById('password').value = password;
-
-
+  return password;
 }
 
-
+generateBtn.addEventListener("click", function() {
+  const passwordLength = 20; // Change this to the desired length of your password
+  const password = generatePassword(passwordLength);
+  passwordTextarea.value = password;
+});
